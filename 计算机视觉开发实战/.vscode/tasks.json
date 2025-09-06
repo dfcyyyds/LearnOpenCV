@@ -1,0 +1,31 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build test.cpp",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "${workspaceFolder}/chapter2.5/test.cpp",
+                "-o",
+                "${workspaceFolder}/chapter2.5/test",
+                "`pkg-config",
+                "--cflags",
+                "--libs",
+                "opencv4`"
+            ],
+            "options": {
+                "shell": {
+                    "executable": "/bin/bash",
+                    "args": ["-c"]
+                }
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": ["$gcc"]
+        }
+    ]
+}
+

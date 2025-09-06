@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/zhengboyang/LearnOpenCV/计算机视觉开发实战/chapter2.5/build",
+  "command": "/usr/bin/c++  -isystem /usr/local/include/opencv4  -o CMakeFiles/chapter2.5.dir/test.cpp.o -c /home/zhengboyang/LearnOpenCV/计算机视觉开发实战/chapter2.5/test.cpp",
+  "file": "/home/zhengboyang/LearnOpenCV/计算机视觉开发实战/chapter2.5/test.cpp",
+  "output": "CMakeFiles/chapter2.5.dir/test.cpp.o"
+}
+]
