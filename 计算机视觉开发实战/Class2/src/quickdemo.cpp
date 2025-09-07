@@ -21,11 +21,63 @@ void QuickDemo::mat_creation_demo(Mat &image)
     std::cout << "width: " << m3.cols << std::endl;
     std::cout << "height: " << m3.rows << std::endl;
     std::cout << "channels: " << m3.channels() << std::endl;
-    m3 = Scalar(127,32,177);
-    
-    Mat kernel = (Mat_<char>(3,3)<<0,-1,0,
-                                -1,5,-1,
-                                0,-1,0);
-    imshow("kernel",kernel);
+    m3 = Scalar(127, 32, 177);
+    // Mat kernel = (Mat_<char>(3,3)<<0,-1,0,
+    //                             -1,5,-1,
+    //                             0,-1,0);
+    // imshow("kernel", kernel);
     waitKey(0);
+}
+
+void QuickDemo::pixel_visit_demo(Mat &image)
+{
+    int w = image.cols;
+    int h = image.rows;
+    int dims = image.channels();
+    // for (int row = 0; row < h; row++)
+    // {
+    //     for (int col = 0; col < w; col++)
+    //     {
+    //         if (dims == 1)
+    //         {
+    //             int pv = image.at<uchar>(row, col);
+    //             image.at<uchar>(row, col) = 255 - pv;
+    //         }
+    //         if (dims == 3)
+    //         {
+    //             Vec3b bgr = image.at<Vec3b>(row, col);
+    //             image.at<Vec3b>(row, col)[0] = 255 - bgr[0];
+    //             image.at<Vec3b>(row, col)[1] = 255 - bgr[1];
+    //             image.at<Vec3b>(row, col)[2] = 255 - bgr[2];
+    //         }
+    //     }
+    // }
+
+    for (int row = 0; row < h; row++)
+    {
+        uchar *current_row = image.ptr<uchar>(row);
+        for (int col = 0; col < w; col++)
+        {
+            if (dims == 1)
+            {
+                int pv = *current_row;
+                *current_row = 255 - pv;
+            }
+            if (dims == 3)
+            {
+                *current_row++ = 255 - *current_row;
+                *current_row++ = 255 - *current_row;
+                *current_row++ = 255 - *current_row;
+            }
+        }
+    }
+    imshow("像素读写演示", image);
+}
+void QuickDemo::operators_demo(Mat &image)
+{
+    Mat dst;
+    Mat m = Mat::zeros(image.size(), image.type());
+    m = Scalar(2, 2, 2);
+    multiply(image, m, dst);
+    imshow("light", dst);
 }

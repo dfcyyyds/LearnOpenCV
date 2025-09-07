@@ -1,0 +1,3 @@
+/home/zhengboyang/LearnOpenCV/Project00/build/CMakeFiles/project00.dir
+/home/zhengboyang/LearnOpenCV/Project00/build/CMakeFiles/edit_cache.dir
+/home/zhengboyang/LearnOpenCV/Project00/build/CMakeFiles/rebuild_cache.dir
