@@ -94,3 +94,22 @@ void QuickDemo::operators_demo(Mat &image)
     }
     imshow("add",dst);
 }
+
+Mat src,dst,m;
+int lightness = 50;
+
+static void on_track(int pos,void* userdata){
+    m = Scalar(lightness,lightness,lightness);
+    add(src,m,dst);
+    imshow("亮度调整",dst);
+}
+
+void QuickDemo::tracking_bar_demo(Mat &image){
+    namedWindow("亮度调整",WINDOW_AUTOSIZE);
+    dst = Mat::zeros(image.size(), image.type());
+    m = Mat::zeros(image.size(), image.type());
+    src = image;
+    int max_value = 100;
+    createTrackbar("Value Bar:","亮度调整",&lightness,max_value,on_track);
+    on_track(50,0);
+}

@@ -13,8 +13,10 @@ int main(int argc,char**argv){
     }
     namedWindow("输入窗口",WINDOW_FREERATIO);
     imshow("输入窗口",src);
+
     QuickDemo qd;
-    qd.operators_demo(src);
+    qd.tracking_bar_demo(src);
+
     waitKey(0);
     destroyAllWindows();
     return 0;
