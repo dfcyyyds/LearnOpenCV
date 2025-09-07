@@ -123,3 +123,28 @@ void QuickDemo::tracking_bar_demo(Mat &image){
     createTrackbar("Contrast Bar:","亮度与对比度调整",&contrast_value,200,on_contrast,(void*)(&image));
     on_lightness(50,&image);
 }
+
+void QuickDemo::key_demo(Mat &image){
+    Mat dst;
+    while(true){
+        int c = waitKey(20);
+        if(c == 27){
+            break;
+        }
+        if(c == 49){
+            std::cout<<1<<std::endl;
+            cvtColor(image,dst,COLOR_BGR2GRAY);
+        }
+        if(c == 50){
+            std::cout<<2<<std::endl;
+            cvtColor(image,dst,COLOR_BGR2HSV);
+        }
+        if(c == 51){
+            std::cout<<3<<std::endl;
+            dst = Scalar(5,5,5);
+            add(image,dst,dst);
+        }
+        //std::cout<<c<<std::endl;
+        imshow("键盘响应",dst);
+    }
+}

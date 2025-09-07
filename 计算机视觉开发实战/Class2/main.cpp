@@ -15,7 +15,7 @@ int main(int argc,char**argv){
     imshow("输入窗口",src);
 
     QuickDemo qd;
-    qd.tracking_bar_demo(src);
+    qd.key_demo(src);
 
     waitKey(0);
     destroyAllWindows();
