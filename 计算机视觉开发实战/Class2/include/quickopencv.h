@@ -6,4 +6,5 @@ using namespace cv;
 class QuickDemo{
 public:
     void colorSpace_Demo(Mat &image);
+    void mat_creation_demo(Mat &image);
 };
