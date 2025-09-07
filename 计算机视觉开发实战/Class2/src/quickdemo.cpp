@@ -75,9 +75,22 @@ void QuickDemo::pixel_visit_demo(Mat &image)
 }
 void QuickDemo::operators_demo(Mat &image)
 {
-    Mat dst;
+    Mat dst = Mat::zeros(image.size(), image.type());
     Mat m = Mat::zeros(image.size(), image.type());
-    m = Scalar(2, 2, 2);
-    multiply(image, m, dst);
-    imshow("light", dst);
+    m = Scalar(50, 50, 50);
+    int w = image.cols;
+    int h = image.rows;
+    int dims = image.channels();
+    for (int row = 0; row < h; row++)
+    {
+        for (int col = 0; col < w; col++)
+        {
+            Vec3b p1 = image.at<Vec3b>(row, col);
+            Vec3b p2 = m.at<Vec3b>(row, col);
+            dst.at<Vec3b>(row, col)[0] = saturate_cast<uchar>(p1[0] + p2[0]);
+            dst.at<Vec3b>(row, col)[1] = saturate_cast<uchar>(p1[1] + p2[1]);
+            dst.at<Vec3b>(row, col)[2] = saturate_cast<uchar>(p1[2] + p2[2]);
+        }
+    }
+    imshow("add",dst);
 }
