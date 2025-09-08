@@ -73,6 +73,7 @@ void QuickDemo::pixel_visit_demo(Mat &image)
     }
     imshow("像素读写演示", image);
 }
+
 void QuickDemo::operators_demo(Mat &image)
 {
     Mat dst = Mat::zeros(image.size(), image.type());
@@ -147,4 +148,38 @@ void QuickDemo::key_demo(Mat &image){
         //std::cout<<c<<std::endl;
         imshow("键盘响应",dst);
     }
+}
+
+void QuickDemo::color_style_demo(Mat &image){
+
+}
+
+void QuickDemo::bitwise_demo(Mat &image){
+    Mat m1 = Mat::zeros(Size(256,256),CV_8UC3);
+    Mat m2 = Mat::zeros(Size(256,256),CV_8UC3);
+    rectangle(m1,Rect(100,100,80,80),Scalar(255,255,0),-1,LINE_8,0);
+    rectangle(m2,Rect(150,150,80,80),Scalar(0,255,255),-1,LINE_8,0);
+    imshow("m1",m1);
+    imshow("m2",m2);
+    Mat dst;
+    bitwise_xor(m1,m2,dst);
+    imshow("bitwise_xor",dst);
+}
+
+void QuickDemo::channels_demo(Mat &image){
+    std::vector<Mat>mv;
+    split(image,mv);
+    imshow("B",mv[0]);
+    imshow("G",mv[1]);
+    imshow("R",mv[2]);
+
+    Mat dst;
+    mv[1] = 0;
+    mv[2] = 0;
+    merge(mv,dst);
+    imshow("蓝色",dst);
+
+    int from_to[] = {0,2,1,1,2,0};
+    mixChannels(&image,1,&dst,1,from_to,3);
+    imshow("通道混合",dst);
 }
